@@ -4,7 +4,7 @@ Wireshark DNS answers:
 	I ran nslookup on www.ait.ac.th, the Asian Institute of Technology. the IP address is 203.159.12.4.
 
 2.) Run nslookup to determine the authoritative DNS servers for a university in Europe. What is its IP address?
-	I ran nslookup -type=NS on www.ox.ac.uk, the website for University of Oxford. The IP address is 153.90.2.1.#53.
+	I ran nslookup -type=NS on www.ceu.edu, the Central European University. The IP address is 153.90.2.1#53.
 
 3.) Run nslookup so that one of the DNS servers obtained in Question 2 is queried for the mail servers for Yahoo! mail. What is it's IP address?
 
