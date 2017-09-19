@@ -1,4 +1,14 @@
 Wireshark Bonus Answers:
 
+Faster Web through Client-Assisted CDN Server Selection:
+http://ieeexplore.ieee.org/abstract/document/7288411/
 
+Analysis of various techniques for improving Web performance:
+http://www.ijarcsms.com/docs/paper/volume3/issue3/V3I3-0079.pdf
+
+Measuring Cellular IPv6 Networks for Web Performance:
+https://pdfs.semanticscholar.org/1de0/aa7dbebcaad72fbe63bab2d562f78e45a167.pdf
+
+End-User Mapping: Next Generation Request Routing for Content Delivery:
+http://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p167.pdf
 
