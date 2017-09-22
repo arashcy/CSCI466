@@ -1,10 +1,10 @@
 Wireshark Bonus Answers:
 
-Faster Web through Client-Assisted CDN Server Selection:
-http://ieeexplore.ieee.org/abstract/document/7288411/
 
-Analysis of various techniques for improving Web performance:
-http://www.ijarcsms.com/docs/paper/volume3/issue3/V3I3-0079.pdf
+Article: Measuring Cellular IPv6 Networks for Web Performance
+	This conference paper discussed different ways to improve overall network performance. One of the topics it covered was DNS lookup time for IPv6 and IPv4 clients. The main focus of the discussion was the difference between the ways that IPv6 and IPv4 clients perform the actual DNS lookups themselves. To test the speeds of different clients, they measured the DNS lookup times for these clients when resolving dual-stacked domain names, normalized the lookup times for each network, and entered the values into a graph to compare them. According to the research done by the author’s testing, IPv6 clients had longer DNS lookup times than IPv4 clients. This is mostly due to the way that IPv6 clients use their particular technique to perform DNS resolutions. Since client devices don’t know whether a domain’s content is going to be available over an IPv4 network or an IPv6 network, they must send two DNS queries in order to resolve domain names. In the case of IPv6 clients, the clients wait for responses to arrive from both queries before sending the IPv6 DNS response. This means that the DNS resolution for IPv6 requires two total round trips between the client and the server, because of the two queries, whereas using IPv4 only requires one round trip. Because of this, the median DNS lookup time for IPv6 clients is 25.7% slower than the lookup time for IPv4 clients. The article goes on to say that although there is a time difference between the two, it is very minimal, and can usually be ignored. However, the lookup time could in fact be reduced by clients sending the IPv6 query and the IPv4 query in parallel, to cut down on the DNS lookup time for IPv6 clients.
+
+
 
 Measuring Cellular IPv6 Networks for Web Performance:
 https://pdfs.semanticscholar.org/1de0/aa7dbebcaad72fbe63bab2d562f78e45a167.pdf
