@@ -4,7 +4,7 @@ a.) List three different protocols that appear in the protocol column in the unf
 	ARP, NTP, and DNS
 
 b.) How long did it take from when the HTTP GET message was sent until the HTTP OK reply was received?
-	0.055091 seconds
+	0.055091 second
 
 c.) What is the Internet address of the gaia.cs.umass.edu? What is the Internet address of your computer?
 	gaia.cs.umass.edu IP address: 128.119.245.12
