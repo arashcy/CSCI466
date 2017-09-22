@@ -17,6 +17,3 @@ Article: Measuring Cellular IPv6 Networks for Web Performance
 
 Source: 
 [1] U. Goel, M. Steiner, E. Nygren, M. Witte, R. Gao, M. Flack and S. Ludin, Measuring Cellular IPv6 Networks for Web Performance, Montana State University, MT: 2015
-
-
-
