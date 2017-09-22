@@ -1,14 +1,22 @@
-Wireshark Bonus Answers:
+Speeding Up DNS Performance Conference Paper Summaries
+CSCI 466 - Lab1
+Elizabeth Andrews
+Brock Ellefson
+
+
+Article: Measuring What is Not Ours: A Tale of 3rd Party Performance
+	This conference paper starts off by discussing how content providers like Facebook and Google need to attract a large number of users to the websites. In order to do this, the sites need to be personalized and aesthetically pleasing. By adding lots of different pictures, CSS frameworks, and other features, the webpage load time, or PLT, begins to increase more and more, which leads to a poor experience for the user. Content providers have also started using more and more third party (3P) resources, which leads to even more difficulties with reducing PLT. The paper states that the key to minimizing the effect that 3P resources have on the webpages’ critical paths. When it comes to DNS, these webpages that use lots of 3P resources use a very large number of DNS lookups, which results in lots of round trips to clients and servers in order to establish the new TCP connections to the 3P servers. To reduce DNS lookup time for 3P URLs, the best way to do this is by rewriting the URLs and reducing the hostnames to CNAMEs that are associated with them. By using CDN providers to rewrite critical 3P URLs, we can eliminate the DNS lookup time for 3P hostnames, because the URL will point to a base page that has already been loaded, instead of having to establish a TCP connection to retrieve the URL from a 3P resource.
+
+Source:
+[1] Goel U., Steiner M., Wittie M.P., Flack M., Ludin S. (2017) Measuring What is Not Ours: A Tale of 3rd Party Performance. In: Kaafar M., Uhlig S., Amann J. (eds) Passive and Active Measurement. PAM 2017
 
 
 Article: Measuring Cellular IPv6 Networks for Web Performance
 	This conference paper discussed different ways to improve overall network performance. One of the topics it covered was DNS lookup time for IPv6 and IPv4 clients. The main focus of the discussion was the difference between the ways that IPv6 and IPv4 clients perform the actual DNS lookups themselves. To test the speeds of different clients, they measured the DNS lookup times for these clients when resolving dual-stacked domain names, normalized the lookup times for each network, and entered the values into a graph to compare them. According to the research done by the author’s testing, IPv6 clients had longer DNS lookup times than IPv4 clients. This is mostly due to the way that IPv6 clients use their particular technique to perform DNS resolutions. Since client devices don’t know whether a domain’s content is going to be available over an IPv4 network or an IPv6 network, they must send two DNS queries in order to resolve domain names. In the case of IPv6 clients, the clients wait for responses to arrive from both queries before sending the IPv6 DNS response. This means that the DNS resolution for IPv6 requires two total round trips between the client and the server, because of the two queries, whereas using IPv4 only requires one round trip. Because of this, the median DNS lookup time for IPv6 clients is 25.7% slower than the lookup time for IPv4 clients. The article goes on to say that although there is a time difference between the two, it is very minimal, and can usually be ignored. However, the lookup time could in fact be reduced by clients sending the IPv6 query and the IPv4 query in parallel, to cut down on the DNS lookup time for IPv6 clients.
 
 
+Source: 
+[1] U. Goel, M. Steiner, E. Nygren, M. Witte, R. Gao, M. Flack and S. Ludin, Measuring Cellular IPv6 Networks for Web Performance, Montana State University, MT: 2015
 
-Measuring Cellular IPv6 Networks for Web Performance:
-https://pdfs.semanticscholar.org/1de0/aa7dbebcaad72fbe63bab2d562f78e45a167.pdf
 
-End-User Mapping: Next Generation Request Routing for Content Delivery:
-http://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p167.pdf
 
