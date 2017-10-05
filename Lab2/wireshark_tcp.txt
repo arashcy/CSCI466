@@ -1,0 +1,81 @@
+Wireshark TCP Lab:
+
+Answers for lab:
+
+1. What is the IP address and TCP port number used by the client computer (source) that is transferring the file to gaia.cs.umass.edu? To answer this question, it’s probably easiest to select an HTTP message and explore the details of the TCP packet used to carry this HTTP message, using the “details of the selected packet header window”.
+	IP address: 128.119.245.12
+	TCP port number: 80
+
+2. What is the IP address of gaia.cs.umass.edu? On what port number is it sending and receiving TCP segments for this connection?
+	IP address: 192.168.1.102
+	Port number: 1161
+
+3. What is the IP address and TCP port number used by your client computer (source) to transfer the file to gaia.cs.umass.edu?
+	IP address: 10.92.210.40
+	TCP port number: 80
+
+4. What is the sequence number of the TCP SYN segment that is used to initiate the TCP connection between the client computer and gaia.cs.umass.edu? What is it in the segment that identifies the segment as a SYN segment?
+	Sequence number: 0
+	It is identified as a SYN segment by the flag 0x002, which is the SYN flag.
+
+5. What is the sequence number of the SYNACK segment sent by gaia.cs.umass.edu to the client computer in reply to the SYN? What is the value of the Acknowledgement field in the SYNACK segment? How did gaia.cs.umass.edu determine that value? What is it in the segment that identifies the segment as a SYNACK segment?
+	Sequence number: 0
+	Value of Acknowledgement field: 1
+	gaia.cs.umass.edu determined that value because it is the acknowledgement of the very first SYN segment.
+	It is identified as a SYNACK segment by the flag 0x012, which is the SYN, ACK flag.
+
+6. What is the sequence number of the TCP segment containing the HTTP POST command?
+	Sequence number: 1
+
+7. Consider the TCP segment containing the HTTP POST as the first segment in the TCP connection. What are the sequence numbers of the first six segments in the TCP connection (including the segment containing the HTTP POST)? At what time was each segment sent? When was the ACK for each segment received? Given the difference between when each TCP segment was sent, and when its acknowledgement was received, what is the RTT value for each of the six segments? What is the EstimatedRTT value after the receipt of each ACK? Assume that the value of the EstimatedRTT is equal to the measured RTT for the first segment, and then is computed using the Estimated RTT  equation for all subsequent segments.
+	Segment 1 
+		Sequence number: 1
+		Time sent: 9:44:20.596858
+		Time ACK received: 9:44:20.624318
+		RTT value: 0.027460000
+	Segment 2 
+		Sequence number: 566
+		Time sent: 9:44:20.612118
+		Time ACK received: 9:44:20.647675
+		RTT value: 0.035557000
+	Segment 3 
+		Sequence number: 2026
+		Time sent: 9:44:20.624407
+		Time ACK received: 9:44:20.694466
+		RTT value: 0.070059000
+	Segment 4
+		Sequence number: 3486
+		Time sent: 9:44:20.625071
+		Time ACK received: 9:44:20.739499
+		RTT value: 0.114428000
+	Segment 5
+		Sequence number: 4946
+		Time sent: 9:44:20.647786
+		Time ACK received: 9:44:20.787680
+		RTT value: 0.0139894000
+	Segment 6
+		Sequence number: 6406
+		Time sent: 9:44:20.648538
+		Time ACK received: 9:44:20.838183
+		RTT value: 0.189645000
+
+8. What is the length of each of the first six TCP segments?
+	Segment 1 length: 565
+	Segment 2 length: 1460
+	Segment 3 length: 1460
+	Segment 4 length: 1460
+	Segment 5 length: 1460
+	Segment 6 length: 1460
+
+9. What is the minimum amount of available buffer space advertised at the received for the entire trace? Does the lack of receiver buffer space over throttle the sender?
+
+10. Are there any retransmitted segments in the trace file? What did you check for (in the trace) in order to answer this question?
+
+11. How much data does the receiver typically acknowledge in an ACK? Can you identify cases where the receiver is ACKing every other received segment?
+
+12. What is the throughput (bytes transferred per unit time) for the TCP connection? Explain how you calculated this value.
+
+
+--------------------------------
+
+What implementation of TCP is being used by your computer? How do you know?
