@@ -30,33 +30,33 @@ Answers for lab:
 7. Consider the TCP segment containing the HTTP POST as the first segment in the TCP connection. What are the sequence numbers of the first six segments in the TCP connection (including the segment containing the HTTP POST)? At what time was each segment sent? When was the ACK for each segment received? Given the difference between when each TCP segment was sent, and when its acknowledgement was received, what is the RTT value for each of the six segments? What is the EstimatedRTT value after the receipt of each ACK? Assume that the value of the EstimatedRTT is equal to the measured RTT for the first segment, and then is computed using the Estimated RTT  equation for all subsequent segments.
 	Segment 1 
 		Sequence number: 1
-		Time sent: 9:44:20.596858
-		Time ACK received: 9:44:20.624318
+		Time sent: 0.026477
+		Time ACK received: 0.053937
 		RTT value: 0.027460000
 	Segment 2 
 		Sequence number: 566
-		Time sent: 9:44:20.612118
-		Time ACK received: 9:44:20.647675
+		Time sent: 0.041737
+		Time ACK received: 0.077294
 		RTT value: 0.035557000
 	Segment 3 
 		Sequence number: 2026
-		Time sent: 9:44:20.624407
-		Time ACK received: 9:44:20.694466
+		Time sent: 0.054026
+		Time ACK received: 0.124085
 		RTT value: 0.070059000
 	Segment 4
 		Sequence number: 3486
-		Time sent: 9:44:20.625071
-		Time ACK received: 9:44:20.739499
+		Time sent: 0.054690
+		Time ACK received: 0.169118
 		RTT value: 0.114428000
 	Segment 5
 		Sequence number: 4946
-		Time sent: 9:44:20.647786
-		Time ACK received: 9:44:20.787680
+		Time sent: 0.077405
+		Time ACK received: 0.217299
 		RTT value: 0.0139894000
 	Segment 6
 		Sequence number: 6406
-		Time sent: 9:44:20.648538
-		Time ACK received: 9:44:20.838183
+		Time sent: 0.078157
+		Time ACK received: 0.267802
 		RTT value: 0.189645000
 
 8. What is the length of each of the first six TCP segments?
@@ -68,12 +68,17 @@ Answers for lab:
 	Segment 6 length: 1460
 
 9. What is the minimum amount of available buffer space advertised at the received for the entire trace? Does the lack of receiver buffer space over throttle the sender?
+	The minimum size of the receiver window, as found in the first acknowledgement from the server, is 5840.
 
 10. Are there any retransmitted segments in the trace file? What did you check for (in the trace) in order to answer this question?
 
 11. How much data does the receiver typically acknowledge in an ACK? Can you identify cases where the receiver is ACKing every other received segment?
 
 12. What is the throughput (bytes transferred per unit time) for the TCP connection? Explain how you calculated this value.
+
+13. Use the Time-Sequence-Graph(Stevens) plotting tool to view the sequence number versus time plot of segments being sent from the client to the gaia.cs.umass.edu server. Can you identify where TCP’s slowstart phase begins and ends, and where congestion avoidance takes over? Comment on ways in which the measured data differs from the idealized behavior of TCP that we’ve studied in the text.
+
+14. Answer each of the two questions above for the trace that you have gathered when you transferred file from your computer to gaia.cs.umass.edu.
 
 
 --------------------------------
