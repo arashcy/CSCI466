@@ -3,26 +3,28 @@ Wireshark TCP Lab:
 Answers for lab:
 
 1. What is the IP address and TCP port number used by the client computer (source) that is transferring the file to gaia.cs.umass.edu? To answer this question, it’s probably easiest to select an HTTP message and explore the details of the TCP packet used to carry this HTTP message, using the “details of the selected packet header window”.
-	IP address: 128.119.245.12
-	TCP port number: 80
+	IP address: 192.168.1.102
+	TCP port number: 1161
 
 2. What is the IP address of gaia.cs.umass.edu? On what port number is it sending and receiving TCP segments for this connection?
-	IP address: 192.168.1.102
-	Port number: 1161
+	IP address: 128.119.245.12
+	Port number: 80
 
 3. What is the IP address and TCP port number used by your client computer (source) to transfer the file to gaia.cs.umass.edu?
-	IP address: 10.92.210.40
-	TCP port number: 80
+	IP address: 192.168.1.2
+	TCP port number: 54260
+
+%Since I was in Florida for the Grace Hopper conference, we used tcp-ethereal-trace-1 to study the TCP behavior, since we were not able to work together on a trace.%
 
 4. What is the sequence number of the TCP SYN segment that is used to initiate the TCP connection between the client computer and gaia.cs.umass.edu? What is it in the segment that identifies the segment as a SYN segment?
 	Sequence number: 0
-	It is identified as a SYN segment by the flag 0x002, which is the SYN flag.
+	It is identified as a SYN segment by the flag 1, which is the SYN flag.
 
 5. What is the sequence number of the SYNACK segment sent by gaia.cs.umass.edu to the client computer in reply to the SYN? What is the value of the Acknowledgement field in the SYNACK segment? How did gaia.cs.umass.edu determine that value? What is it in the segment that identifies the segment as a SYNACK segment?
 	Sequence number: 0
 	Value of Acknowledgement field: 1
-	gaia.cs.umass.edu determined that value because it is the acknowledgement of the very first SYN segment.
-	It is identified as a SYNACK segment by the flag 0x012, which is the SYN, ACK flag.
+	gaia.cs.umass.edu determined that value by incrementing the sequence number sent by the client by 1.
+	It is identified as a SYNACK segment because both the SYN and ACK flags are set to 1, which identifies this as a SYNACK segment.
 
 6. What is the sequence number of the TCP segment containing the HTTP POST command?
 	Sequence number: 1
@@ -31,33 +33,33 @@ Answers for lab:
 	Segment 1 
 		Sequence number: 1
 		Time sent: 0.026477
-		Time ACK received: 0.053937
-		RTT value: 0.027460000
+		Time ACK received: 0.53937
+		Estimated RTT: 0.027460
 	Segment 2 
 		Sequence number: 566
 		Time sent: 0.041737
-		Time ACK received: 0.077294
-		RTT value: 0.035557000
+		Time ACK received: 0.0774294
+		Estimated RTT: 0.028472
 	Segment 3 
 		Sequence number: 2026
 		Time sent: 0.054026
 		Time ACK received: 0.124085
-		RTT value: 0.070059000
+		Estimated RTT: 0.033670
 	Segment 4
 		Sequence number: 3486
 		Time sent: 0.054690
 		Time ACK received: 0.169118
-		RTT value: 0.114428000
+		Estimated RTT: 0.043765
 	Segment 5
 		Sequence number: 4946
 		Time sent: 0.077405
 		Time ACK received: 0.217299
-		RTT value: 0.0139894000
+		Estimated RTT: 0.055781
 	Segment 6
 		Sequence number: 6406
 		Time sent: 0.078157
 		Time ACK received: 0.267802
-		RTT value: 0.189645000
+		Estimated RTT: 0.072514
 
 8. What is the length of each of the first six TCP segments?
 	Segment 1 length: 565
@@ -68,19 +70,32 @@ Answers for lab:
 	Segment 6 length: 1460
 
 9. What is the minimum amount of available buffer space advertised at the received for the entire trace? Does the lack of receiver buffer space over throttle the sender?
-	The minimum size of the receiver window, as found in the first acknowledgement from the server, is 5840.
+	The minimum size of the receiver window, as found in the first acknowledgement from the server, is 5840, and the user is never throttled by a lack of buffer space.
 
 10. Are there any retransmitted segments in the trace file? What did you check for (in the trace) in order to answer this question?
+	There were not any retransmitted segments in this trace file. We looked at the sequence numbers of the trace, and since all sequence numbers were increasing, we knew there was never a retransmitted segment.
 
 11. How much data does the receiver typically acknowledge in an ACK? Can you identify cases where the receiver is ACKing every other received segment?
+	The receiver is typically acknowledging about 1460 bytes, but the ACK at number 6 accepted 565 bytes. We could not find a place where the receiver was ACKing every other segment.
 
 12. What is the throughput (bytes transferred per unit time) for the TCP connection? Explain how you calculated this value.
+	The throughput of the data is the total bits per second. We take the time of the last ACK and subtract the time of the first segment being transmitted.
+Last ACK time (number 206): 5.651141
+First segment (number 4): 0.23172
+Total transmission time: 5.627969
+Total bytes transmitted: 164091
+So, the throughput is 164091/5.627969 = 29156.3439671 bytes per second
 
 13. Use the Time-Sequence-Graph(Stevens) plotting tool to view the sequence number versus time plot of segments being sent from the client to the gaia.cs.umass.edu server. Can you identify where TCP’s slowstart phase begins and ends, and where congestion avoidance takes over? Comment on ways in which the measured data differs from the idealized behavior of TCP that we’ve studied in the text.
+	Slow start occurred from 0.0s to .09030s. Then congestion avoidance takes over from .09039s until the triple duplicate ACK at 0.4892s, and again at .6728s. Slow start begins again at .6728s and goes until 6.445s.
 
 14. Answer each of the two questions above for the trace that you have gathered when you transferred file from your computer to gaia.cs.umass.edu.
+	We only used the downloaded example trace, because I was in Florida and we were not able to meet up and use a trace that we both got.	
 
 
 --------------------------------
 
 What implementation of TCP is being used by your computer? How do you know?
+	TCP Reno is being used, because with after the triple duplicate ACK, the ssthresh is set to cwnd/2, and the swnd is set to ssthresh + 3.
+
+
