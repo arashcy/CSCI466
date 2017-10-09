@@ -2,6 +2,8 @@ import argparse
 import RDT
 import time
 
+# application layer
+
 if __name__ == '__main__':
     parser =  argparse.ArgumentParser(description='Quotation client talking to a Pig Latin server.')
     parser.add_argument('server', help='Server.')

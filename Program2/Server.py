@@ -2,6 +2,7 @@ import argparse
 import RDT
 import time
 
+# application layer
 
 def makePigLatin(word):
     m  = len(word)

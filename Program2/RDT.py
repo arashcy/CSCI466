@@ -3,6 +3,7 @@ import argparse
 from time import sleep
 import hashlib
 
+# transport layer
 
 class Packet:
     ## the number of bytes used to store packet length
@@ -91,15 +92,31 @@ class RDT:
             
     
     def rdt_2_1_send(self, msg_S):
-        pass
+        p = Packet(self.seq_num, msg_S)
+        self.seq_num += 1
+        
+        # send packet
+        self.network.udt_send(p.get_byte_S())
+        # receive packet back
+        
+        # check for corruption in received packet? which is going to be an ACK I think?
         
     def rdt_2_1_receive(self):
+        # I think also check for corruption here, once you receive a packet
         pass
     
     def rdt_3_0_send(self, msg_S):
-        pass
+        p = Packet(self.seq_num, msg_S)
+        self.seq_num += 1
+        
+        # send packet
+        self.network.udt_send(p.get_byte_S())
+        # receive packet back
+        
+        # check for corruption in received packet? Should be an ACK?
         
     def rdt_3_0_receive(self):
+        # check for corruption here?
         pass
         
 
