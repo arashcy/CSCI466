@@ -91,19 +91,72 @@ class RDT:
             #if this was the last packet, will return on the next iteration
             
     
+    # called from above, is passed the data to be delivered to receiver upper layer
     def rdt_2_1_send(self, msg_S):
-        p = Packet(self.seq_num, msg_S)
-        self.seq_num += 1
+        p = Packet(self.seq_num, msg_S) # creates new packet with the current sequence number and the message
+        self.seq_num += 1 # increments sequence number
         
-        # send packet
-        self.network.udt_send(p.get_byte_S())
-        # receive packet back
-        
-        # check for corruption in received packet? which is going to be an ACK I think?
+        while True:
+            self.network.udt_send(p.get_byte_S()) # sends packet
+            self.byte_buffer = '' # empties buffer?
+            rcvpkt = '' # sets received packet to empty for now
+
+            while rcvpkt == '': # while received packet is still empty, keep trying to get a response
+                rcvpkt = self.network.udt_receive() # tries to receive a response and sets any response received to the received packet variable
+
+            length = int(rcvpkt[:Packet.length_S_length]) # length of the packet that was received
+            self.byte_buffer = rcvpkt[length:] # sets the length of the buffer to the length of the received packet
+
+            if Packet.corrupt(rcvpkt[:length]): # checks if the received packet is corrupted or not
+                print("\nACK/NAK packet corrupted\n") # if it is corrupted, print out corrupted
+            else: # if the packet is not corrupt
+                response = Packet.from_byte_S(rcvpkt[:length]) # not sure what this does
+                if(response.seq_num < self.seq_num): # checks that the response was supposed to come before the current
+                    ack = Packet(response.seq_num, '1') # create an ACK, set to 1
+                    self.network.udt_send(ack.get_byte_S()) # sending something else?
+                elif (response.msg_S == '1'): # if the response is an ACK
+                    print("\nACK received\n") # then a packet was successfully sent
+                    self.seq_num += 1 # the sequence number is incremented
+                    break
+                elif (response.msg_S == '0'): # if the response is a 0, then it was a negative acknowledgement, not received
+                    print("\nNAK received\n") # need to re send packet
+            
         
     def rdt_2_1_receive(self):
-        # I think also check for corruption here, once you receive a packet
-        pass
+        ret_S = None # return message I think
+        byte_S = self.network.udt_receive() # receive a packet from the network
+        self.byte_buffer += byte_S # increment the byte buffer by the packet?
+
+        while True: # continue extracting packets
+            if len(self.byte_buffer) < Packet.length_S_length: # if we have not received enough bytes to fill the bugger
+                break  # not enough bytes to read packet length
+            length = int(self.byte_buffer[:Packet.length_S_length]) # length of the packet?
+            if len(self.byte_buffer) < length: # if we still have not received enough bytes to fill the buffer
+                break  # not enough bytes to read the whole packet
+            if Packet.corrupt(self.byte_buffer): # if the packet is corrupt
+                print("\nPacket Corrupted\n") # print corruption message
+                print("\nNAK\n")
+                p = Packet(self.seq_num, '0') # create a packet with a 0, for a negative acknowledgement
+                self.network.udt_send(p.get_byte_S()) # send the NAK packet
+            else: # if the packet is not corrupted
+                rcvpkt = Packet.from_byte_S(self.byte_buffer[0:length]) # create a packet from the buffer
+                if rcvpkt.msg_V == '1' or rcvpkt.msg_V == '0': # if the packet is an ACK or NAK
+                    self.byte_buffer = self.byte_buffer[length:] # not sure what this does
+                    continue
+                if rcvpkt.seq_num < self.seq_num: # if the packets sequence number is less than the current sequence number
+                    print("\nDuplicate, ACK\n") # there was a duplicate, or a retransmitted packet I think
+                    ack = Packet(rcvpkt.seq_num, '1') # create an ACK packet and set to 1
+                    self.network.udt_send(rcvpkt.get_byte_S()) # shouldn't this be an ACK...?
+                elif rcvpkt.seq_num == self.seq_num: # if the sequence number of the packet is the same as the current sequence number
+                    print("\nACK\n") # print acknowledgement message
+                    ack = Packet(self.seq_num, '1') # create an ACK packet
+                    self.network.udt_send(ack.get_byte_S()) # send the ACK package
+                    self.seq_num += 1 # increment the sequence number in preparation for the next transmission
+                    break
+
+                ret_S = p.msg_S if (ret_S is None) else ret_S + p.msg_S # add message to the return string
+            self.byte_buffer = self.byte_buffer[length:] # empty out buffer
+        return ret_S
     
     def rdt_3_0_send(self, msg_S):
         p = Packet(self.seq_num, msg_S)
