@@ -166,7 +166,7 @@ class RDT:
 
 
     def rdt_3_0_send(self, msg_S):
-        #rdt 1.0 + corruption and duplicate
+        #rdt 1.0 + corruption and lost
         sndpkt = Packet(self.seq_num, msg_S)
         self.seq_num += 1
 
@@ -185,6 +185,8 @@ class RDT:
                 output = ("ACK/NAK packet corrupted\n")
             else: #packet is not corrupt
                 response = Packet.from_byte_S(rcvpkt[:length])
+                if(response.seq_num > self.seq_num):
+                    output = ("out of order packet received\n")
                 if(response.seq_num < self.seq_num):
                     ack = Packet(response.seq_num, '1') #ACK
                     self.network.udt_send(ack.get_byte_S())
