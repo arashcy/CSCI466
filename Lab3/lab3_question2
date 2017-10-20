@@ -1,4 +1,8 @@
 2.)
 a.) The walkthrough covers changing link latency and bandwidth, as well as how to measure throughput using iperf. Create an experiment that shows how throughput between two nodes is affected by latency, not just link bandwidth. Why does that happen?
 
+latency can be tested with ping, so do something with that
+
 b.) Issue a Web request between h1 and h2 in the minimal topology and capture the HTTP traffic with wireshark (running on your Mininet VM, not on your laptop). Take a screenshot of wireshark showing just the HTTP request and reply.
+
+//done, just insert screenshot of HTTP requests
