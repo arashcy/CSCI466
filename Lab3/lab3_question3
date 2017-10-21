@@ -5,12 +5,10 @@ a.) Replicate the example from the video and take a screenshot of wireshark show
 
 b.) Show the flow table on switch s1. (Hint: Remember how from the walkthrough.) There are separate entries for flows from h1 and from h4. Why is there not a single bi-directional flow table entry instead.
 
-Because the flow modification for each host has a different IP address (I think), or at least a different port that the traffic is being sent through?
 
 c.) After how long and under what conditions do the flow table entries at the switch expire?
 
 According to Wireshark, the idle timeout is 60 seconds. So, after 60 seconds, a flow entry is deleted from the flow table and the hardware if no packets match the entry. Since the hard timeout is set to 0, it is not initialized and will not be used in this situation. 
-
 
 d.) After the flow table entries have expired  run:
 	Mininet> h1 ping -c5 h4
