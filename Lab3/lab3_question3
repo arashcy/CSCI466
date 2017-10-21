@@ -1,1 +1,14 @@
-// convert to pdf when done
+3.)
+a.) Replicate the example from the video and take a screenshot of wireshark showing a flow modification message.
+
+//done, just add screenshot/s of flow mod message
+
+b.) Show the flow table on switch s1. (Hint: Remember how from the walkthrough.) There separate entries for flows from h1 and from h4. Why is there not a single bi-directional flow table entry instead.
+
+
+c.) After how long and under what conditions do the flow table entries at the switch expire?
+
+
+d.) After the flow table entries have expired  run:
+	Mininet> h1 ping -c5 h4
+Why do the latencies tend to go down over time?
