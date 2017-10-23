@@ -4,7 +4,7 @@ a.) Replicate the example from the video and take a screenshot of wireshark show
 
 b.) Show the flow table on switch s1. (Hint: Remember how from the walkthrough.) There are separate entries for flows from h1 and from h4. Why is there not a single bi-directional flow table entry instead.
 
-
+Because the flows might expire later. If there is a single flow between the two, and no packets that match the flow table entry are coming from h1 for example, then the flow entry would be deleted. But then, if h4 tried to send a packet to h1 that matched the previous flow table entry, there would not be an entry to match, and it would take longer for the packet to reach h1. Therefore, it is better in this scenario to have two separate flows for each host, so that if one host’s flow entry expires, the other host still has an entry.
 
 c.) After how long and under what conditions do the flow table entries at the switch expire?
 

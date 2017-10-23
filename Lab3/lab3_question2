@@ -1,6 +1,6 @@
 a.) The walkthrough covers changing link latency and bandwidth, as well as how to measure throughput using iperf. Create an experiment that shows how throughput between two nodes is affected by latency, not just link bandwidth. Why does that happen?
 
-use iperf
+Latency is how long it takes a packet to get from point A to point B, and throughput is how much data is moved from point A to point B. A higher latency means a higher throughput. Throughput is affected by latency because if it is taking a long time for a packet to get to it’s destination (high latency), less data will be able to be moved along that same route (throughput), because it’s being essentially clogged up by packets with a high latency that take a long time to reach their destination.
 
 b.) Issue a Web request between h1 and h2 in the minimal topology and capture the HTTP traffic with wireshark (running on your Mininet VM, not on your laptop). Take a screenshot of wireshark showing just the HTTP request and reply.
 
