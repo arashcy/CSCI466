@@ -1,0 +1,47 @@
+2.a)
+1. What is the 48-bit Ethernet address of your computer?
+
+
+2. What is the 48-bit destination address in the Ethernet frame? Is this the Ethernet address of gaia.cs.umass.edu? What device has this as its Ethernet address?
+
+
+3. Give the hexadecimal value for the two-byte Frame type field. What upper layer protocol does this correspond to?
+
+
+4. How many bytes from the very start of the Ethernet frame does the ASCII "G" in "GET" appear in the Ethernet frame?
+
+
+2.b) Why is an ARP query sent within a broadcast frame? Why is an ARP response sent within a frame with a specific destination MAC address?
+
+
+2.c)
+12.
+a. How many bytes from the very beginning of the Ethernet frame does the ARP opcode field begin?
+
+
+b. What is the value of the opcode field within the ARP-payload part of the Ethernet frame in which an ARP request is made?
+
+
+c. Does the ARP message contain the IP address of the sender?
+
+
+d. Where in the ARP request does the "question" appear - the Ethernet address of the machine whose corresponding IP address is being queried?
+
+
+13.
+a. How many bytes from the very beginning of the Ethernet frame does the ARP opcode field begin?
+
+
+b. What is the value of the opcode field within the ARP-payload part of the Ethernet frame in which an ARP response is made?
+
+
+c. Where in the ARP message does the "answer" to the earlier ARP request appear - the IP address of the machine having the Ethernet address whose corresponding IP address is being queried?
+
+
+14. What are the hexadecimal values for the source and destination addresses in the Ethernet frame containing the ARP reply message?
+
+
+15. The first and second ARP packets in this trace correspond to an ARP request sent by the computer running Wireshark, and the ARP reply sent to the computer running Wireshark by the computer with the ARP-requested Ethernet address. But there is yet another computer on this network, as indicated by packet 6 - another ARP request. Why is there no ARP reply (sent in response to the ARP request in packet 6) in the packet trace?
+
+
+2.d) What is the default amount of time that an entry remains in your ARP cache before being removed? You can determine this empirically (by monitoring the cache contents), or by looking this up in your operation system documentation. Indicate how/where you determined this value.
