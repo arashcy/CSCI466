@@ -1,18 +1,34 @@
 1. Why is an ARP query sent within a broadcast frame? Why is an ARP response sent within a frame with a specific destination MAC address?
 
+	An address resolution protocol (ARP) query is sent because the querying host needs to know about both the MAC address and the IP address that is being transmitted to. So, when each node in the network receives the message, it sees that it is a broadcast and returns the corresponding MAC address that is being requested in a frame back to the host that sent the query.
 
+	
 2. Consider the above campus network.
 a. Suppose that all links are 100 Mbps full duplex. What is the maximum total aggregate throughput that can be achieved among the 9 hosts and 2 servers in this network? You can assume that any host or server can send to any other host or server.
 
+	Aggregate throughput is defined as the number of nodes in the system multiplied by the capacity of each link. In this case, there are 11 nodes (9 hosts and 2 servers), and the capacity of each link is 100 Mbps, according to the diagram. So, total aggregate throughput is going to be 11 x 100 = 1100 Mbps.
+
 b. Suppose the three departmental switches are now hubs. All links are 100 Mbps. What is the total aggregate throughput now?
 
+	If the three department switches are made into hubs, and all links are still 100 Mbps, then the web server, the mail server, and the three new hubs all send out data at that rate. Then the new total aggregate throughput is 500 Mpbs.
+
 c. Suppose that all the switches are replaced by hubs. All links are 100 Mbps. What is the total aggregate througput?
+
+	If all six of the switches are replaced by hubs, then they will all be part of the same collision domain. And since all the links have 100 Mbps, then the total aggregate throughput now will be 100 Mpbs.
 
 
 3.
 a. What are the differences between the following types of wireless channel impairments: path loss, multipath propagation, interference from other sources?
 
+	Path loss occurs when the radio waves are traveling a very long distance. Since the waves expand when they travel outwards, the power will decrease proportional to the distance traveled squared. Multipath fading occurs when a radio signal reaches the radio tower by more than one path. This can happen when the signal bounces off of some object in the way of its path, such as a building. Interference occurs when different radio waves are transmitted on the same frequency or wavelength. This is what happens when you start using your microwave while also using your phone.
+
+
 b. As a mobile node gets farther and farther away from a base station, what are two actions that a base station could take to ensure that the loss probability of a transmitted frame does not increase?
+
+	The base station can reduce the transmission rate so that packets are being sent more slowly, or increase the transmission power.
+
 
 
 4. In mobile IP, what effect will mobility have on end-to-end delays of datagrams between the source and destination? Describe different sources of delay.
+
+	Datagrams have to be sent back to the home agent from the mobile node, which will cause more of a delay than you would have with direct routing, simply because there will end up being more information to be communicated in order for information to be sent and received.
