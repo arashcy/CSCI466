@@ -12,7 +12,7 @@
 	The ÒGÓ appears 51 bytes from the start of the frame.
 
 2.b) Why is an ARP query sent within a broadcast frame? Why is an ARP response sent within a frame with a specific destination MAC address?
-
+	Because the host sending the query does not know the MAC address of the IP address that is being sent to. But when the response is sent, the destination address is already known, so there is no need to send a broadcast.
 
 2.c) Answer questions 12-15
 12.
