@@ -45,3 +45,4 @@ c. Where in the ARP message does the "answer" to the earlier ARP request appear 
 	There is no ARP reply sent to this packet because it is a broadcast, and the ARP reply is sent straight to the computer that made the ARP request.
 
 2.d) What is the default amount of time that an entry remains in your ARP cache before being removed? You can determine this empirically (by monitoring the cache contents), or by looking this up in your operation system documentation. Indicate how/where you determined this value.
+	For this computer, the ARP cache is removed or cleared 20 minutes after being validated. I found this by using the command “man arp” to look at the man pages for ARP and then reading the description provided.
