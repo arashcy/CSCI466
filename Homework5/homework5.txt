@@ -4,7 +4,27 @@
 2.
 a. For each time slot, identify the packets that are in the queue and the number of tokens in the bucket, immediately after the arrivals have been processed, but before any of the packets have passed through the queue and removed a token. Thus, for the t=0 time slot in the example above, packets 1, 2, and 3 are in the queue, and there are two tokens in the buffer.
 
+t=0 slot: packets 1, 2, and 3 are in the queue. Two tokens in buffer.
+t=1 slot: packets 3 and 4 are in the queue. One token in buffer.
+t=2 slot: packets 4 and 5 are in the queue. One token in buffer.
+t=3 slot: packets 5 and 6 are in the queue. One token in buffer.
+t=4 slot: packet 6 is in the queue. One token in buffer.
+t=5 slot: no packets in queue. One token in buffer.
+t=6 slot: packets 7 and 8 are in the queue. Two tokens in buffer.
+t=7 slot: packets 9 and 10 are in the queue. One token in buffer.
+t=8 slot: packet 10 is in the queue. One token in buffer.
+
 b. For each time slot, indicate which packets appear on the output after the token(s) have been removed from the queue. Thus, for the t=0 time slot in the example above, packets 1 and 2 appear on the output link from the leaky buffer during slot 0.
+
+t=0 slot: packets 1 and 2 are output.
+t=1 slot: packet 3 is output.
+t=2 slot: no output.
+t=3 slot: packet 4 is output.
+t=4 slot: packet 5 is output.
+t=5 slot: packet 6 is output.
+t=6 slot: packets 7 and 8 are output.
+t=7 slot: packet 9 is output.
+t=8 slot: packet 10 is output.
 
 3.
 a. What is the second message?
