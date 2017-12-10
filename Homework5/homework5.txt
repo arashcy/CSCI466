@@ -28,10 +28,10 @@ t=8 slot: packet 10 is output.
 
 3.
 a. What is the second message?
-The second message is the response from the KDC to Alice with the key to communicate with Bob. It is Ka-kdc(K, Kb-kdc(A, K)).
+The second message is the response from the KDC to Alice with the key to communicate with Bob. It is Ka-kdc(Ka, Kb-kdc(A, K)).
 
 b. What is the third message?
-The third message is Alice sending the session key to Bob to communicate. It is Kb-kdc(A, K).
+The third message is Alice sending the session key to Bob to communicate. It is Kb-kdc(A, Kb).
 
 4. Compute a third message, different from the two messages, that also has that checksum.
 
