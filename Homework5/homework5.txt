@@ -33,5 +33,17 @@ b. What is the third message?
 
 4. Compute a third message, different from the two messages, that also has that checksum.
 
+Message:
+! d _ W
+( < ) (
+i ! 2 -
+
+ASCII Representation:
+21 64 5F 57
+28 3C 41 28
+69 21 32 2D
+ÑÑÑÑÑÑÑÑÑÑÑ
+B2 C1 D2 AC
+
 5. Describe a simple scheme that allows peers to verify the integrity of blocks.
 
