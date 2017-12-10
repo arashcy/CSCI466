@@ -1,5 +1,5 @@
 1. Why is a packet that is received after its scheduled playout time considered lost?
-	A packet cannot be played out if it is already past it’s playout time, so the packet is essentially lost since it cannot be used.
+A packet cannot be played out if it is already past it’s playout time, so the packet is essentially lost since it cannot be used.
 
 2.
 a. For each time slot, identify the packets that are in the queue and the number of tokens in the bucket, immediately after the arrivals have been processed, but before any of the packets have passed through the queue and removed a token. Thus, for the t=0 time slot in the example above, packets 1, 2, and 3 are in the queue, and there are two tokens in the buffer.
@@ -46,4 +46,4 @@ ASCII Representation:
 B2 C1 D2 AC
 
 5. Describe a simple scheme that allows peers to verify the integrity of blocks.
-
+The .torrent file that the peer gets from the fully trusted source contains a checksum, and the peers can check any blocks they receive against this checksum.
